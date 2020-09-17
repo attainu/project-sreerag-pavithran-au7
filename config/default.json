@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://iamsreerag:admin123@cluster0-b6jtb.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+}
