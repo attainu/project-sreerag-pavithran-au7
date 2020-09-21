@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -16,21 +16,21 @@ const Register = () => {
         if(password !== password2){
             console.log('Password donot match!')
         }else {
-            const newUser = {
-                name, email, password
-            }
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-                const body = JSON.stringify(newUser);
-                const res = await axios.post('/api/users', body, config);
-                console.log(res.data)
-            } catch (error) {
-                console.error(error.response.data)
-            }
+            // const newUser = {
+            //     name, email, password
+            // }
+            // try {
+            //     const config = {
+            //         headers: {
+            //             'Content-Type': 'application/json'
+            //         }
+            //     }
+            //     const body = JSON.stringify(newUser);
+            //     const res = await axios.post('/api/users', body, config);
+            //     console.log(res.data)
+            // } catch (error) {
+            //     console.error(error.response.data)
+            // }
         }
     }
     return (
@@ -39,10 +39,10 @@ const Register = () => {
             <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
             <form onSubmit={e => onSubmit(e)} className="form" action="create-profile.html">
                 <div className="form-group">
-                <input type="text" placeholder="Name" name="name" onChange={(e)=> onChange(e)} required />
+                <input type="text" placeholder="Name" name="name" value={name} onChange={(e)=> onChange(e)} required />
                 </div>
                 <div className="form-group">
-                <input type="email" placeholder="Email Address" name="email" onChange={(e)=> onChange(e)} />
+                <input type="email" placeholder="Email Address" value={email} name="email" onChange={(e)=> onChange(e)} />
                 <small className="form-text"
                     >This site uses Gravatar so if you want a profile image, use a
                     Gravatar email</small>
@@ -53,6 +53,7 @@ const Register = () => {
                     placeholder="Password"
                     name="password"
                     minLength="6"
+                    value={password}
                     onChange={(e)=> onChange(e)}
                 />
                 </div>
@@ -61,6 +62,7 @@ const Register = () => {
                     type="password"
                     placeholder="Confirm Password"
                     name="password2"
+                    value={password2}
                     minLength="6"
                     onChange={(e)=> onChange(e)}
                 />
