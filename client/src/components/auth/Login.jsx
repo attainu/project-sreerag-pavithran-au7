@@ -1,28 +1,48 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-
+import {Link, useHistory} from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const [formData, setFormData] = useState({
+    const history = useHistory();
+    toast.configure()
+    const [data, setData] = useState({
         email: '',
         password: ''
     });
-    const {email, password} = formData;
+
+    const {email, password} = data;
+
     const onChange = (e)=>{
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
+        setData({
+            ...data, [e.target.name]: e.target.value
         })
     }
-    const onSubmit = (e) => {
+
+    const onSubmit = async(e)=> {
         e.preventDefault();
-        
+        try {
+            const header = {
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            }
+            const body = JSON.stringify(data)
+            await axios.post('/api/auth', body, header);
+            toast('User Logged in Successfully');
+            history.push('/dashboard');
+            
+        } catch (error) {
+            toast(error.response.data.errors[0].message)
+        }
     }
+
     return (
         <div>
             <h1 className="large text-primary">Sign In</h1>
             <p className="lead"><i className="fas fa-user"></i> Sign into Your Account</p>
-            <form onSubmit={e=> onSubmit(e)} className="form" action="dashboard.html">
+            <form onSubmit={(e)=> onSubmit(e)} className="form" action="dashboard.html">
                 <div className="form-group">
                 <input
                     type="email"
@@ -30,7 +50,7 @@ const Login = () => {
                     name="email"
                     required
                     value={email}
-                    onChange={e=>onChange(e)}
+                    onChange={(e)=> onChange(e)}
                 />
                 </div>
                 <div className="form-group">
@@ -39,6 +59,7 @@ const Login = () => {
                     placeholder="Password"
                     name="password"
                     value={password}
+                    onChange={(e)=> onChange(e)}
                 />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Login" />
