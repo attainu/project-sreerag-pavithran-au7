@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-// import axios from 'axios';
-
-import {setAlert} from '../../actions/alert';
-
-import {useDispatch} from 'react-redux';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Register = (props) => {
+    toast.configure()
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -14,29 +13,29 @@ const Register = (props) => {
         password2: ''
     });
     const {name, email, password, password2} = formData;
-    const dispatch = useDispatch();
 
-    const onChange = (e) => setFormData({ ...formData, [e.target.name]:e.target.value});
+    const onChange = (e) => setFormData({ ...formData ,[e.target.name]:e.target.value});
     const onSubmit = async(e) => {
         e.preventDefault();
         if(password !== password2){
-            dispatch(setAlert('Password not match!', 'danger'))
+            toast("Ops! Passwords Dont Match");
         }else {
-            // const newUser = {
-            //     name, email, password
-            // }
-            // try {
-            //     const config = {
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         }
-            //     }
-            //     const body = JSON.stringify(newUser);
-            //     const res = await axios.post('/api/users', body, config);
-            //     console.log(res.data)
-            // } catch (error) {
-            //     console.error(error.response.data)
-            // }
+            const newUser = {
+                name, email, password
+            }
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
+                }
+                const body = JSON.stringify(newUser);
+                const res = await axios.post('/api/users', body, config)
+                console.log(res.data)
+                toast("User Signed Up Successfully")
+            } catch (error) {
+                toast(error.response.data.errors[0].message)
+            }
         }
     }
     return (
