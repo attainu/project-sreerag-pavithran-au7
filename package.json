@@ -1,38 +1,45 @@
 {
-  "name": "project-sreerag-pavithran-au7",
+  "name": "dev-connector",
   "version": "1.0.0",
-  "description": "Social Network for Developers",
-  "main": "index.js",
+  "description": "A MERN stack social media app",
+  "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server",
-    "client": "npm start --prefix client",
+    "client-install": "cd client && npm install ",
+    "install-all": "npm install && cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start ",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/attainu/project-sreerag-pavithran-au7.git"
+    "url": "git+https://github.com/petercr/dev-connector.git"
   },
-  "author": "Sreerag Pavithran",
-  "license": "ISC",
+  "keywords": [
+    "javascript",
+    "react",
+    "mongodb",
+    "express"
+  ],
+  "author": "Peter Cruckshank",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/attainu/project-sreerag-pavithran-au7/issues"
+    "url": "https://github.com/petercr/dev-connector/issues"
   },
-  "homepage": "https://github.com/attainu/project-sreerag-pavithran-au7#readme",
-  "devDependencies": {
-    "concurrently": "^5.3.0",
-    "nodemon": "^2.0.4"
-  },
+  "homepage": "https://github.com/petercr/dev-connector#readme",
   "dependencies": {
-    "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
-    "config": "^3.3.1",
-    "express": "^4.17.1",
-    "express-validator": "^6.6.1",
-    "gravatar": "^1.8.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.5",
-    "normalize-url": "^5.1.0",
-    "request": "^2.88.2"
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }

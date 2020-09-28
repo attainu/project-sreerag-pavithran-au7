@@ -1,5 +1,0 @@
-{
-    "mongoURI": "mongodb://localhost/devconnector",
-    "jwtsecret": "mykkjsjhdkjshdkljhsjkl65s4d53s4d54",
-    "githubToken": "26d9c627c72b046d466f"
-}

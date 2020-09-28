@@ -1,9 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const profileSchema = new mongoose.Schema({
+// Create Schema
+const ProfileSchema = new Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  },
+  handle: {
+    type: String,
+    required: true,
+    max: 40
   },
   company: {
     type: String
@@ -110,4 +117,4 @@ const profileSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('profile', profileSchema);
+module.exports = Profile = mongoose.model("profile", ProfileSchema);
