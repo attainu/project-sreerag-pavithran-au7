@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profileActions";
+import SearchPage from "./SearchPage";
 
 class Profiles extends Component {
   componentDidMount() {
@@ -35,6 +36,8 @@ class Profiles extends Component {
               <p className="lead text-center">
                 Browse and connect with developers
               </p>
+              <SearchPage />
+              <br />
               {profileItems}
             </div>
           </div>

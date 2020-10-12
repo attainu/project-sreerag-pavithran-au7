@@ -266,4 +266,20 @@ router.delete("/", passport.authenticate("jwt", { session: false }), (req, res) 
   });
 });
 
+router.get(`/search/:name`, (req, res)=>{
+  let name = req.params.name;
+  console.log(name)
+  User.find({name: new RegExp(name, 'i')})
+  .then((profile)=> {
+  if (!profile) {
+    errors.noprofile = "There is no profile for this user";
+    res.status(404).json(errors);
+  }
+
+  res.json({profile});
+  console.log(profile)
+})
+.catch(err => res.status(404).json(err));
+})
+
 module.exports = router;
