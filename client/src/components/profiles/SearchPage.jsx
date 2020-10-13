@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 const SearchPage = () => {
     const [search, setSearch] = useState([]);
     const [result, setResult] = useState([])
@@ -34,7 +35,7 @@ const SearchPage = () => {
                     
                     </div>
                         <h2>{e.name}</h2>
-                        
+                        <Link to={`/profile/${e.name}`} className="btn btn-info">View Profile</Link>
                     </div>
                 ))
             }
